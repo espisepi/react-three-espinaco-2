@@ -3,6 +3,11 @@
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 
+
+// Sepinaco imports
+const MusicVideo = dynamic(() => import('@/components/canvas/Examples').then((mod) => mod.MusicVideo), { ssr: false })
+
+
 const Logo = dynamic(() => import('@/components/canvas/Examples').then((mod) => mod.Logo), { ssr: false })
 const Dog = dynamic(() => import('@/components/canvas/Examples').then((mod) => mod.Dog), { ssr: false })
 const Duck = dynamic(() => import('@/components/canvas/Examples').then((mod) => mod.Duck), { ssr: false })
@@ -37,8 +42,9 @@ export default function Page() {
         <div className='w-full text-center md:w-3/5'>
           <View className='flex h-96 w-full flex-col items-center justify-center'>
             <Suspense fallback={null}>
-              <Logo route='/blob' scale={0.6} position={[0, 0, 0]} />
+              {/* <Logo route='/blob' scale={0.6} position={[0, 0, 0]} /> */}
               <Common />
+              <MusicVideo />
             </Suspense>
           </View>
         </div>
