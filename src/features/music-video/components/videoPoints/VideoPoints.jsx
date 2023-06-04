@@ -91,10 +91,7 @@ export const VideoPoints = ({ id_video = 'video', position = [0,0,0], ...props }
         }
     })
   return (
-    <group name="video-points">
-        <DuckModel />
-
-    </group>
+    null
   )
 }
 

@@ -1,7 +1,9 @@
 'use client'
 
+import { Stars } from '@react-three/drei';
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
+import { Vector3 } from 'three';
 
 
 const VideoPoints = dynamic(() => import('@/features/music-video/components/videoPoints/VideoPoints').then((mod) => mod.VideoPoints), { ssr: false })
@@ -40,9 +42,20 @@ export default function Page() {
           src={'videos/mcpi.mp4'} controls={true} autoPlay={true} crossOrigin="anonymous"></video>
       </div>
                 
-      <View orbit={true} className='absolute top-0 flex h-screen w-full flex-col items-center justify-center'>
+      <View orbit={true} orbitOptions={{target:[0,0,-1000]}} className='absolute top-0 flex h-screen w-full flex-col items-center justify-center'>
+        <Common color='black' cameraOptions={{far:99999}} />
         <VideoPoints position={[0,0,-1000]} />
-        <Common color='black' />
+        <Stars radius={1000}  count={9999} depth={400} factor={30} fade/* saturation={1} */ /* speed={1} */ />
+        {/* <group position={new Vector3(0,0,1000)}>
+            <group>
+                <VideoPoints />
+                <VideoPoints position={[30,0,0]}/>
+            </group>
+            <group position={[100,100,0]}>
+                <VideoPoints />
+                <VideoPoints position={[30,0,0]}/>
+            </group>
+        </group> */}
       </View>
     </>
   )
