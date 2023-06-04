@@ -27,6 +27,10 @@ const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.
 const Common = dynamic(() => import('@/components/canvas/View').then((mod) => mod.Common), { ssr: false })
 
 export default function Page() {
+
+  const [showUI, setShowUI] = useState(false);
+
+
   const [showVideoPoints, setShowVideoPoints] = useState(false);
   if(!showVideoPoints) return (
           <div 
@@ -41,6 +45,12 @@ export default function Page() {
         <video id="video" style={{ width: '25vw', height: '25vh', top: 0, zIndex: 100, position: 'absolute' }}
           src={'videos/mcpi.mp4'} controls={true} autoPlay={true} crossOrigin="anonymous"></video>
       </div>
+
+      <button 
+        id="menu-button"
+        onClick={(ev)=>setShowUI(value=>!value)}
+        style={{zIndex: 999, transition: 'opacity 0.3s linear 0s', width: '50px', height: '50px', borderRadius: '25px', position: 'absolute', bottom: '100px', right: '10px', backgroundColor: 'white', opacity: showUI ? 1 : 0.3 }}
+      ></button>
                 
       <View orbit={true} orbitOptions={{target:[0,0,-1000]}} className='absolute top-0 flex h-screen w-full flex-col items-center justify-center'>
         <Common color='black' cameraOptions={{far:99999}} />
@@ -60,3 +70,27 @@ export default function Page() {
     </>
   )
 }
+
+
+
+
+/**
+ * Apuntes :)
+ * 
+ * 
+ * ========== Transition CSS ======================
+ * div {
+  transition-property: width;
+  transition-duration: 2s;
+  transition-timing-function: linear;
+  transition-delay: 1s;
+  }
+
+  div {
+  transition: width 2s linear 1s;
+  }
+
+  ========== END Transition CSS ======================
+
+ * 
+ */
