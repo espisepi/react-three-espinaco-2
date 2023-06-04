@@ -1,6 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
+import { useState } from 'react'
 
 
 const VideoPoints = dynamic(() => import('@/features/music-video/components/videoPoints/VideoPoints').then((mod) => mod.VideoPoints), { ssr: false })
@@ -24,16 +25,24 @@ const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.
 const Common = dynamic(() => import('@/components/canvas/View').then((mod) => mod.Common), { ssr: false })
 
 export default function Page() {
+  const [showVideoPoints, setShowVideoPoints] = useState(false);
+  if(!showVideoPoints) return (
+          <div 
+            onClick={(event)=>setShowVideoPoints(value=>!value)}
+            style={{width: '100vw', height: '100vh', backgroundColor: 'blue', display: 'flex', alignItems:'center', justifyContent:'center'}}>
+              <h1>Click on this Screen to Start :)</h1>
+          </div>
+  )
   return (
     <>
       <div className='mx-auto flex w-full flex-col flex-wrap items-center md:flex-row  lg:w-4/5'>
         <video id="video" style={{ width: '25vw', height: '25vh', top: 0, zIndex: 100, position: 'absolute' }}
           src={'videos/mcpi.mp4'} controls={true} autoPlay={true} crossOrigin="anonymous"></video>
       </div>
-
-      <View className='absolute top-0 flex h-screen w-full flex-col items-center justify-center'>
-        <VideoPoints />
-        <Common  />
+                
+      <View orbit={true} className='absolute top-0 flex h-screen w-full flex-col items-center justify-center'>
+        <VideoPoints position={[0,0,-1000]} />
+        <Common color='black' />
       </View>
     </>
   )
