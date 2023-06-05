@@ -1,4 +1,6 @@
 
+// Based in: https://github.com/felixmariotto/three-SpriteMixer/blob/master/examples/from_indexed_texture.html
+
 import { SpriteMixer } from "./SpriteMixer";
 
 
