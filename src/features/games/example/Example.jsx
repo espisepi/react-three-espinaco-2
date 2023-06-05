@@ -1,6 +1,6 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { SpriteMixer } from "../common/sprite-mixer/SpriteMixer"
-import { useThree } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
 import { SpriteManager } from "../common/sprite-mixer/SpriteManager";
 
@@ -9,6 +9,7 @@ export const Example = ({ ...props }) => {
     const { scene } = useThree();
     const textureCharacterSpriteSheet = useTexture('/games/sprites/character-example/character.png');
     console.log(textureCharacterSpriteSheet);
+    const [spriteManager, setSpriteManager] = useState(null);
     useEffect(()=>{
         // let spriteMixer;
         // let actionSprite;
@@ -43,7 +44,21 @@ export const Example = ({ ...props }) => {
 
             const spriteManager = SpriteManager(textureCharacterSpriteSheet);
 			scene.add( spriteManager.actionSprite );
+
+            setSpriteManager(spriteManager);
         }
     },[textureCharacterSpriteSheet]);
+
+    useEffect(()=>{
+        if(spriteManager && spriteManager.actions){
+            spriteManager.actions.runRight.playLoop();
+        }
+    },[spriteManager])
+
+    useFrame((state, delta)=>{
+        if(spriteManager) {
+            spriteManager.spriteMixer.update( delta );
+        }
+    })
     return null;
 }

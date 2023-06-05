@@ -7,13 +7,13 @@ export const SpriteManager = (textureCharacterSpriteSheet) => {
     let actionSprite;
     let actions = {};
 
-    console.log(spriteMixer);
-    spriteMixer.addEventListener('finished', (e)=> {
-        console.log(e);
-    });
-    spriteMixer.addEventListener('loop', (e)=> {
-        console.log(e);
-    });
+    // console.log(spriteMixer);
+    // spriteMixer.addEventListener('finished', (e)=> {
+    //     console.log(e);
+    // });
+    // spriteMixer.addEventListener('loop', (e)=> {
+    //     console.log(e);
+    // });
 
     // An ActionSprite is instantiated with these arguments :
     // - which THREE.Texture to use
