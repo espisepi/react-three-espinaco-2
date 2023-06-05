@@ -34,14 +34,14 @@ export default function Page() {
   const [showUI, setShowUI] = useState(false);
 
 
-  const [showVideoPoints, setShowVideoPoints] = useState(false);
-  if(!showVideoPoints) return (
-          <div 
-            onClick={(event)=>setShowVideoPoints(value=>!value)}
-            style={{width: '100vw', height: '100vh', backgroundColor: 'blue', display: 'flex', alignItems:'center', justifyContent:'center'}}>
-              <h1>Click on this Screen to Start :)</h1>
-          </div>
-  )
+  // const [showVideoPoints, setShowVideoPoints] = useState(false);
+  // if(!showVideoPoints) return (
+  //         <div 
+  //           onClick={(event)=>setShowVideoPoints(value=>!value)}
+  //           style={{width: '100vw', height: '100vh', backgroundColor: 'blue', display: 'flex', alignItems:'center', justifyContent:'center'}}>
+  //             <h1>Click on this Screen to Start :)</h1>
+  //         </div>
+  // )
   return (
     <>
       <View orbit={true} className='absolute top-0 flex h-screen w-full flex-col items-center justify-center'>
