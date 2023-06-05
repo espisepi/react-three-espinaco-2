@@ -34,20 +34,22 @@ export default function Page() {
   const [showUI, setShowUI] = useState(false);
 
 
-//   const [showVideoPoints, setShowVideoPoints] = useState(false);
-//   if(!showVideoPoints) return (
-//           <div 
-//             onClick={(event)=>setShowVideoPoints(value=>!value)}
-//             style={{width: '100vw', height: '100vh', backgroundColor: 'blue', display: 'flex', alignItems:'center', justifyContent:'center'}}>
-//               <h1>Click on this Screen to Start :)</h1>
-//           </div>
-//   )
+  const [showVideoPoints, setShowVideoPoints] = useState(false);
+  if(!showVideoPoints) return (
+          <div 
+            onClick={(event)=>setShowVideoPoints(value=>!value)}
+            style={{width: '100vw', height: '100vh', backgroundColor: 'blue', display: 'flex', alignItems:'center', justifyContent:'center'}}>
+              <h1>Click on this Screen to Start :)</h1>
+          </div>
+  )
   return (
     <>
-      <div style={{backgroundColor:'blue'}} className='mx-auto flex w-full flex-col flex-wrap items-center md:flex-row  lg:w-4/5'>
-        <h1>HOLI CARACOLI</h1>
-      </div>
-      <Example />
+      <View orbit={true} className='absolute top-0 flex h-screen w-full flex-col items-center justify-center'>
+        <Common color='black' cameraOptions={{far:99999}} />
+        <Stars radius={1000}  count={9999} depth={400} factor={30} fade/* saturation={1} */ /* speed={1} */ />
+
+        <Example />
+      </View>
     </>
   )
 }
