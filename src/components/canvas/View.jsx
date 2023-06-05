@@ -10,11 +10,11 @@ export const Common = ({ color, cameraOptions }) => (
     <ambientLight intensity={0.5} />
     <pointLight position={[20, 30, 10]} intensity={1} />
     <pointLight position={[-10, -10, -10]} color='blue' />
-    <PerspectiveCamera makeDefault fov={40} position={[0, 0, 0]} {...cameraOptions} />
+    <PerspectiveCamera makeDefault fov={40} position={[0,0,-5]} {...cameraOptions} />
   </Suspense>
 )
 
-const View = forwardRef(({ children, orbit, orbitOptions, ...props }, ref) => {
+const View = forwardRef(({ children, orbit, orbitOptions = {target:[0,0,0]}, ...props }, ref) => {
   const localRef = useRef(null)
   useImperativeHandle(ref, () => localRef.current)
 
