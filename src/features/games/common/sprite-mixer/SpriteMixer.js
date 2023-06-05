@@ -9,12 +9,12 @@ import * as THREE from 'three';
 
 export const SpriteMixer = () => {
 
-	var actionSprites = []; // Will store every new actionSprite.
-	var listeners = []; // Will store the user callbacks to call upon loop, finished, etc..
+	let actionSprites = []; // Will store every new actionSprite.
+	let listeners = []; // Will store the user callbacks to call upon loop, finished, etc..
 
 
 
-	var api = {
+	let api = {
 		actionSprites: actionSprites,
 		update: update,
 		ActionSprite: ActionSprite,
