@@ -43,7 +43,7 @@ export default function Page() {
     <>
       <div className='mx-auto flex w-full flex-col flex-wrap items-center md:flex-row  lg:w-4/5'>
         <video id="video" style={{ width: '25vw', height: '25vh', top: 0, zIndex: 100, position: 'absolute' }}
-          src={'videos/mcpi.mp4'} controls={true} autoPlay={true} crossOrigin="anonymous"></video>
+          src={'/videos/mcpi.mp4'} controls={true} autoPlay={true} crossOrigin="anonymous"></video>
       </div>
 
       <button 
