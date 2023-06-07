@@ -3,9 +3,10 @@ import { SpriteMixer } from "../common/sprite-mixer/SpriteMixer"
 import { useFrame, useThree } from "@react-three/fiber";
 import { Box, useTexture } from "@react-three/drei";
 import { SpriteManager } from "../common/sprite-mixer/SpriteManager";
+import { TerrainExample } from "../common/physics/terrain-example/TerrainExample";
 
 export const Example = ({ ...props }) => {
-    return <Box />
+    return <TerrainExample />
 }
 
 export const SpriteExample = ({ ...props }) => {

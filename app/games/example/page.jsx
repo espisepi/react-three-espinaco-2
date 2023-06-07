@@ -1,5 +1,6 @@
 'use client'
 
+import { MatterExample } from '@/features/games/common/physics/matter-example/MatterExample';
 import { Stars } from '@react-three/drei';
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
@@ -51,7 +52,8 @@ export default function Page() {
         <Common color='black' cameraOptions={{far:99999}} />
         <Stars radius={1000}  count={9999} depth={400} factor={30} fade/* saturation={1} */ /* speed={1} */ />
 
-        <Example />
+        {/* <Example /> */}
+        <MatterExample />
       </View>
     </>
   )
