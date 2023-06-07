@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react"
 import { SpriteMixer } from "../common/sprite-mixer/SpriteMixer"
 import { useFrame, useThree } from "@react-three/fiber";
-import { useTexture } from "@react-three/drei";
+import { Box, useTexture } from "@react-three/drei";
 import { SpriteManager } from "../common/sprite-mixer/SpriteManager";
 
-
 export const Example = ({ ...props }) => {
+    return <Box />
+}
+
+export const SpriteExample = ({ ...props }) => {
     const { scene } = useThree();
     const textureCharacterSpriteSheet = useTexture('/games/sprites/character-example/character.png');
     console.log(textureCharacterSpriteSheet);

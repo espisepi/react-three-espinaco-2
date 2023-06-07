@@ -5,9 +5,12 @@ import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import { Vector3 } from 'three';
 
+// https://sbcode.net/threejs/ballgame-deployment/
+// https://brm.io/matter-js/demo/#terrain
+
 // import { SpriteMixer } from '@/features/music-video/games/common/sprite-mixer/SpriteMixer';
 
-const VideoPoints = dynamic(() => import('@/features/music-video/components/videoPoints/VideoPoints').then((mod) => mod.VideoPoints), { ssr: false })
+// const VideoPoints = dynamic(() => import('@/features/music-video/components/videoPoints/VideoPoints').then((mod) => mod.VideoPoints), { ssr: false })
 
 const Example = dynamic(() => import('@/features/games/example/Example').then((mod) => mod.Example), { ssr: false })
 
