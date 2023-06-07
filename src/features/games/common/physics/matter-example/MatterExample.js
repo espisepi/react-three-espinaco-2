@@ -73,6 +73,12 @@ export const MatterExample = () => {
           }
         })
       World.add(engine.current.world, [ball])
+      const mesh =  new THREE.Mesh(
+            new THREE.BoxBufferGeometry(1,1,1),
+            new THREE.MeshBasicMaterial({color:'green'})
+        )
+      sceneThree.add(mesh)
+      meshesLocal.add(mesh);
     }
   }
 
@@ -81,7 +87,7 @@ export const MatterExample = () => {
   const [threeMatterEngine, setThreeMatterEngine] = useState();
   useEffect(()=>{
     if(groupMeshes?.current && engine?.current) {
-        const threeMatterEngineTemp = new ThreeMatterEngine(groupMeshes.current, engine.current.world.bodies, sceneThree);
+        const threeMatterEngineTemp = new ThreeMatterEngine(groupMeshes.current, engine.current.world.bodies, sceneThree, engine);
         setThreeMatterEngine(v=>threeMatterEngineTemp);
     }
   },[groupMeshes, engine])
@@ -99,7 +105,7 @@ export const MatterExample = () => {
 
   return (
     <group ref={groupMeshes}>
-        <Box />
+        <Box onClick={(ev)=>threeMatterEngine.handleClick(ev)} />
     </group>
     // <div
     //   onMouseDown={handleDown}
