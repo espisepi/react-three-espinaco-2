@@ -1,5 +1,5 @@
 import { ThreeMatterClass } from "../../matter/three-matter/ThreeMatterClass";
-import { Common, Svg, Bodies, Composite, Composites } from "matter-js";
+import { Common, Svg, Bodies, Composite, Composites, Query } from "matter-js";
 
 
 export class ThreeMatterTerrainExampleClass extends ThreeMatterClass {
