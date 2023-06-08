@@ -38,8 +38,8 @@ export default function Page() {
         <div className='w-full text-center md:w-3/5'>
           <View className='flex h-96 w-full flex-col items-center justify-center'>
             <Suspense fallback={null}>
-              {/* <Logo route='/blob' scale={0.6} position={[0, 0, 0]} /> */}
-              <Common />
+              <Logo route='/games/example' scale={0.6} position={[0, 0, -10]} />
+              <Common color={'lightpink'}  />
             </Suspense>
           </View>
         </div>
