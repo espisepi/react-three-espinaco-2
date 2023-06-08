@@ -1,13 +1,14 @@
 import { ThreeMatterClass } from "../../matter/three-matter/ThreeMatterClass";
-import { Common, Svg, Bodies, Composite, Composites, Query } from "matter-js";
+import { Common, Svg, Bodies, Composite, Composites, Query, World } from "matter-js";
 import { SVGLoader } from 'three/addons/loaders/SVGLoader.js';
 import * as THREE from 'three';
 
+// Code based: https://github.com/liabru/matter-js/blob/master/examples/terrain.js
 
 
 export class ThreeMatterTerrainExampleClass extends ThreeMatterClass {
 
-    constructor(scene, showExample = true) {
+    constructor(scene, showExample = false) {
         super(scene, showExample);
     }
 
@@ -36,7 +37,9 @@ export class ThreeMatterTerrainExampleClass extends ThreeMatterClass {
             let world = this.engine.world;
             let bodiesGraphics = this.bodiesGraphics;
             let scene = this.scene;
+            let engine = this.engine;
             // scene.add(bodiesGraphics);
+            let Z_DEPTH_POSITION = this.Z_DEPTH_POSITION;
 
             loadSvg(this.PATH_SVG)
                 .then(function(root) {
@@ -54,9 +57,53 @@ export class ThreeMatterTerrainExampleClass extends ThreeMatterClass {
                     }, true);
 
                     console.log(terrain)
+                    console.log(vertexSets);
+                    // ========== Terrain ThreeJS =======================================================
 
-                    Composite.add(world, terrain);
-                    // World.add(world, terrain);
+                    // Define Geometry
+                    const geometry = new THREE.BufferGeometry();
+                    const positions = [];
+                    const uvs = [];
+
+                    const vertexTerrainPoints = vertexSets[0]; // Array<{x:number,y:number}>
+            
+                    const videoWidth = vertexTerrainPoints.length;
+                    const videoHeight = vertexTerrainPoints.length;
+            
+                    for (let i = 0; i < videoWidth; i += 1) {
+                        const x = vertexTerrainPoints[i].x;
+                        const y = vertexTerrainPoints[i].y;
+                        const vertex = new THREE.Vector3(
+                            x,
+                            y,
+                            0
+                        );
+                        positions.push( vertex.x, vertex.y, vertex.z );
+                        uvs.push( x / videoWidth, y / videoHeight );
+                    }
+                    console.log('video height: ' + videoHeight);
+                    console.log('video width: ' + videoWidth);
+            
+                    geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( positions, 3 ) );
+                    geometry.setAttribute( 'uv', new THREE.Float32BufferAttribute( uvs, 2 ) );
+                    
+                    // Define Material
+                    const material = new THREE.MeshBasicMaterial({color:'blue'});
+
+                    // Define Points
+                    const particles = new THREE.Points(geometry, material);
+                    particles.rotation.x += Math.PI;
+
+                    particles.position.set(0,0,Z_DEPTH_POSITION);
+
+                    scene.add(particles);
+
+
+
+                    // ============= FIN TERRAIN JS========================================================================
+
+                    // Composite.add(world, terrain);
+                    World.add(engine.world, terrain);
 
                     let bodyOptions = {
                         frictionAir: 0, 
@@ -64,16 +111,38 @@ export class ThreeMatterTerrainExampleClass extends ThreeMatterClass {
                         restitution: 0.6
                     };
 
-                    
+
                     Composite.add(world, Composites.stack(80, 100, 20, 20, 10, 10, function(x, y) {
                         if (Query.point([terrain], { x: x, y: y }).length === 0) {
-                            bodiesGraphics.push(new THREE.Mesh(
-                                new THREE.BoxGeometry(1,1,1),
-                                new THREE.MeshBasicMaterial()
-                            ));
-                            return Bodies.polygon(x, y, 5, 12, bodyOptions);
+                            const mesh = new THREE.Mesh(
+                                new THREE.BoxGeometry(10,10,10),
+                                new THREE.MeshBasicMaterial({color:'blue'})
+                            );
+                            mesh.position.set(x,y,Z_DEPTH_POSITION);
+                            // console.log(scene)
+                            scene.add(mesh);
+                            bodiesGraphics.push(mesh);
+                            const polygon = Bodies.polygon(x, y, 5, 12, bodyOptions);
+                            World.add(engine.world, polygon);
+                            return polygon;
                         }
                     }));
+                    // Composite.add(world, Composites.stack(80, 100, 20, 20, 10, 10, function(x, y) {
+                    //     if (Query.point([terrain], { x: x, y: y }).length === 0) {
+                    //         const mesh = new THREE.Mesh(
+                    //             new THREE.BoxGeometry(10,10,10),
+                    //             new THREE.MeshBasicMaterial({color:'blue'})
+                    //         );
+                    //         mesh.position.set(x,y,Z_DEPTH_POSITION);
+                    //         // console.log(scene)
+                    //         scene.add(mesh);
+                    //         bodiesGraphics.push(mesh);
+                    //         return Bodies.polygon(x, y, 5, 12, bodyOptions);
+                    //     }
+                    // }));
+
+                    console.log(engine)
+
                 });
         } else {
             Common.warn('Fetch is not available. Could not load SVG.');
@@ -83,9 +152,13 @@ export class ThreeMatterTerrainExampleClass extends ThreeMatterClass {
     }
 
     customUpdate() {
+        // console.log(this.engine.world.bodies)
         for (let j = 0; j < this.engine.world.bodies.length; j++) {
             let b = this.engine.world.bodies[j].position;
-            this.bodiesGraphics[j % (this.bodiesGraphics.length - 1)]?.position.set(b.x - 405, -(b.y - 305), this.Z_DEPTH_POSITION)
+            // let b = this.engine.world.cache.allBodies[j]?.position;
+            // console.log(this.bodiesGraphics)
+            // console.log(b)
+            this.bodiesGraphics[j % (this.bodiesGraphics.length - 1)].position.set(b.x - 405, -(b.y - 305), this.Z_DEPTH_POSITION)
         }
     }
 
@@ -128,7 +201,7 @@ export class ThreeMatterTerrainExampleClass extends ThreeMatterClass {
                         const mesh = new THREE.Mesh( geometry, material );
                         group.add( mesh );
 
-                        group.position.set(group.position.x,group.position.y, Z_DEPTH_POSITION)
+                        group.position.set(0,0, Z_DEPTH_POSITION)
 
                     }
 

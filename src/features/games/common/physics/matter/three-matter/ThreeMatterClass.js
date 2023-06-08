@@ -75,6 +75,8 @@ export class ThreeMatterClass {
         this.X_START_POS = 120;
         this.Y_START_POS = 80;
 
+        this.bodiesGraphicsExamples = [];
+
         // ‥‥‥‥‥‥‥‥‥‥‥‥‥□□□
         // ‥‥‥‥‥‥〓〓〓〓〓‥‥□□□
         // ‥‥‥‥‥〓〓〓〓〓〓〓〓〓□□
@@ -161,7 +163,7 @@ export class ThreeMatterClass {
             }
 
             group.add(m);
-            this.bodiesGraphics.push(m);
+            this.bodiesGraphicsExamples.push(m);
         }
         
         // back panel
@@ -176,7 +178,7 @@ export class ThreeMatterClass {
     _updateExample() {
         for (let j = 0; j < this.engine.world.bodies.length; j++) {
             let b = this.engine.world.bodies[j].position;
-            this.bodiesGraphics[j]?.position.set(b.x - 405, -(b.y - 305), this.Z_DEPTH_POSITION)
+            this.bodiesGraphicsExamples[j]?.position.set(b.x - 405, -(b.y - 305), this.Z_DEPTH_POSITION)
         }
     }
 
