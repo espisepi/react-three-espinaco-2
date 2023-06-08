@@ -5,6 +5,9 @@ import { useFrame, useThree } from '@react-three/fiber'
 
 import { ThreeMatterEngine } from './ThreeMatterEngine'
 
+// 1 - Poner ejemplo threejs matter codepen: https://codepen.io/cx20/pen/VYWWeY
+// 2 - Poner ejemplo terrain matter siguiendo ejemplo 1 ( threejs matter codepen ):
+//      -- https://brm.io/matter-js/demo/#terrain
 
 
 export const MatterExample = () => {
