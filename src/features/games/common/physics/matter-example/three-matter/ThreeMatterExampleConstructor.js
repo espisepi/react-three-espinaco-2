@@ -154,8 +154,9 @@ export class ThreeMatterExampleConstructor {
 
     stop() {
       //   Render.stop(render) // No estoy utilizando el Render de matter-js
-      World.clear(this.engine.current.world)
-      Engine.clear(this.engine.current)
+      World.clear(this.engine?.world)
+      Engine.clear(this.engine)
+      this.engine = undefined;
     //   render.canvas.remove() // No estoy utilizando el Render de matter-js
     //   render.canvas = null   //                  ""
     //   render.context = null  //                  ""
