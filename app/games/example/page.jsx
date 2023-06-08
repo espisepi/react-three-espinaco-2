@@ -3,8 +3,12 @@
 import { MatterExample } from '@/features/games/common/physics/matter-example/MatterExample';
 import { Stars } from '@react-three/drei';
 import dynamic from 'next/dynamic'
+import Head from 'next/head';
+import Script from 'next/script';
 import { useState } from 'react'
 import { Vector3 } from 'three';
+
+// import { MatterTerrainExample } from '@/features/games/common/physics/matter-example/terrain/MatterTerrainExample';
 
 // https://sbcode.net/threejs/ballgame-deployment/
 // https://brm.io/matter-js/demo/#terrain
@@ -14,6 +18,9 @@ import { Vector3 } from 'three';
 // const VideoPoints = dynamic(() => import('@/features/music-video/components/videoPoints/VideoPoints').then((mod) => mod.VideoPoints), { ssr: false })
 
 const Example = dynamic(() => import('@/features/games/example/Example').then((mod) => mod.Example), { ssr: false })
+
+const MatterTerrainExample = dynamic(() => import('@/features/games/common/physics/matter-example/terrain/MatterTerrainExample').then((mod) => mod.MatterTerrainExample), { ssr: false })
+
 
 const Blob = dynamic(() => import('@/components/canvas/Examples').then((mod) => mod.Blob), { ssr: false })
 const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.View), {
@@ -48,12 +55,15 @@ export default function Page() {
   // )
   return (
     <>
+      <Script src="/scripts/pathseg.js" />
+
       <View orbit={true} className='absolute top-0 flex h-screen w-full flex-col items-center justify-center'>
         <Common color='black' cameraOptions={{far:99999}} />
         <Stars radius={1000}  count={9999} depth={400} factor={30} fade/* saturation={1} */ /* speed={1} */ />
 
         {/* <Example /> */}
-        <MatterExample />
+        {/* <MatterExample /> */}
+        <MatterTerrainExample />
       </View>
     </>
   )
