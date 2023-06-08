@@ -4,15 +4,70 @@ import * as THREE from 'three';
 export class ThreeMatterExampleConstructor {
 
     // scene: THREE.Scene
-    constructor(scene) {
+    // customExample: Boolean
+    constructor(scene, showExample = false) {
 
+        this._initAttributes(scene,showExample);
+
+        if(this.showExample) {
+            this._initExampleAttributes();
+        }
+
+        this.initCustomAttributes();
+    }
+
+    initCustomAttributes() {
+        // Add here custom code when extends from this class
+    }
+
+    customUpdate() {
+        // Add here custom code when extends from this class
+    }
+
+    _initAttributes(scene, showExample) {
         this.scene = scene;
+        this.showExample = showExample;
+        this.bodiesGraphics = [];
+        // this.bodiesPhysics = []; // No hace falta porque lo coge de this.engine.world.bodies
+
+        // create a Matter.js engine
+        this.engine = Engine.create({render: {visible: false}});
+
+        // run the engine
+        Engine.run(this.engine);
+    }
+
+    update() {
+
+        // Dont touch this method, all new code add in customUpdate() method churritamia
+        
+        if(this.showExample) {
+            this._updateExample();
+        }
+
+        this.customUpdate();
+    }
+
+    stop() {
+      //   Render.stop(render) // No estoy utilizando el Render de matter-js
+      World.clear(this.engine?.world)
+      Engine.clear(this.engine)
+      this.engine = undefined;
+      //   render.canvas.remove() // No estoy utilizando el Render de matter-js
+      //   render.canvas = null   //                  ""
+      //   render.context = null  //                  ""
+      //   render.textures = {}   //                  ""
+    }
+
+
+    _initExampleAttributes() {
 
         this.Z_DEPTH_POSITION = 600;
 
         this.DOT_SIZE = 30;
         this.X_START_POS = 120;
         this.Y_START_POS = 80;
+
         // ‥‥‥‥‥‥‥‥‥‥‥‥‥□□□
         // ‥‥‥‥‥‥〓〓〓〓〓‥‥□□□
         // ‥‥‥‥‥〓〓〓〓〓〓〓〓〓□□
@@ -48,33 +103,7 @@ export class ThreeMatterExampleConstructor {
             "BK","BR","BK","BK","BL","BL","BL","BL","BK","BK","BK","BK","BK","BK","BK","BK"
         ];
 
-        this.engine = undefined;
-        this.bodiesGraphics = [];
-        // this.bodiesPhysics = []; // No hace falta porque lo coge de this.engine.world.bodies
-        this.init();
-    }
-
-    init() {
-        // let engine;
-        // let renderer = new THREE.WebGLRenderer({
-        //     antialias: true
-        // });
-        // renderer.setSize(window.innerWidth, window.innerHeight);
-        // renderer.setPixelRatio(window.devicePixelRatio)
-        // document.body.appendChild(renderer.domElement);
-
-        // let camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 3000);
-        // camera.position.x = -600;
-        // camera.position.y = 200;
-        // camera.position.z = 800;
-
-        // let controls = new THREE.OrbitControls(camera);
-        // let scene = new THREE.Scene();
-
-        // create a Matter.js engine
-        this.engine = Engine.create({render: {visible: false}});
-
-        // create two circles and a ground
+                // create two circles and a ground
         let circles = [];
         for (let i = 0; i < this.dataSet.length; i++) {
             let x = this.X_START_POS + (i % 16) * (this.DOT_SIZE + 5);
@@ -86,6 +115,7 @@ export class ThreeMatterExampleConstructor {
                 density: 0.001
             }));
         }
+
 
         let ground = Bodies.rectangle(400, 610, 810, 60, {isStatic: true});
         let wallA = Bodies.rectangle(0, 305, 60, 670, {isStatic: true});
@@ -115,7 +145,7 @@ export class ThreeMatterExampleConstructor {
                 let geometry = new THREE.BoxGeometry(w, h, 170);
                 m = new THREE.Mesh(geometry, material);
             } else {
-                let color = this.getRgbColor(this.dataSet[pos]);
+                let color = this.getRgbColorExample(this.dataSet[pos]);
                 let boxMaterial = new THREE.MeshPhongMaterial({color: color});
                 let boxGeometry = new THREE.CylinderGeometry(w/2, w/2, 150);
                 m = new THREE.Mesh(boxGeometry, boxMaterial);
@@ -131,39 +161,19 @@ export class ThreeMatterExampleConstructor {
         let m = new THREE.Mesh(new THREE.BoxGeometry(800, 600, 10), material);
         m.position.z = -40;
         group.add(m);
-
-        // run the engine
-        Engine.run(this.engine);
-
-        // dirLight = new THREE.DirectionalLight(0xffffff, 1);
-        // dirLight.position.set(-30, 50, 40);
-        // scene.add(dirLight);
     }
 
-    update() {
-        
-        // requestAnimationFrame(render);
 
+
+
+    _updateExample() {
         for (let j = 0; j < this.engine.world.bodies.length; j++) {
             let b = this.engine.world.bodies[j].position;
             this.bodiesGraphics[j].position.set(b.x - 405, -(b.y - 305), this.Z_DEPTH_POSITION)
         }
-
-        // renderer.render(scene, camera);
     }
 
-    stop() {
-      //   Render.stop(render) // No estoy utilizando el Render de matter-js
-      World.clear(this.engine?.world)
-      Engine.clear(this.engine)
-      this.engine = undefined;
-    //   render.canvas.remove() // No estoy utilizando el Render de matter-js
-    //   render.canvas = null   //                  ""
-    //   render.context = null  //                  ""
-    //   render.textures = {}   //                  ""
-    }
-
-    getRgbColor(colorType) {
+    getRgbColorExample(colorType) {
         let colorHash = {
             //"BK":"#000000", // black
             "BK":"#f8fefd", // black
