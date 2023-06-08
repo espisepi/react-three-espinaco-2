@@ -1,7 +1,7 @@
 import { Engine, World, Bodies } from 'matter-js';
 import * as THREE from 'three';
 
-export class ThreeMatterExampleConstructor {
+export class ThreeMatterClass {
 
     // scene: THREE.Scene
     // customExample: Boolean
