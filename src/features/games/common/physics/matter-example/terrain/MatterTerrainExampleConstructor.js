@@ -1,6 +1,6 @@
 import Matter from 'matter-js';
 
-
+// @Deprecated, use instead ThreeMatterTerrainExampleClass
 export const MatterTerrainExampleConstructor = () => {
     let Engine = Matter.Engine,
         Render = Matter.Render,

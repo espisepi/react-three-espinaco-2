@@ -16,7 +16,7 @@ export const ThreeMatterTerrainExample = () => {
   const [threeMatterExampleClass, setThreeMatterExampleClass] = useState();
 
   useEffect(() => {
-    const threeMatterExampleClassTemp = new ThreeMatterTerrainExampleClass(scene, true);
+    const threeMatterExampleClassTemp = new ThreeMatterTerrainExampleClass(scene);
     setThreeMatterExampleClass(v=>threeMatterExampleClassTemp);
 
     return () => {

@@ -22,6 +22,12 @@ export class ThreeMatterClass {
 
     customUpdate() {
         // Add here custom code when extends from this class
+
+        // Example
+        // for (let j = 0; j < this.engine.world.bodies.length; j++) {
+        //     let b = this.engine.world.bodies[j].position;
+        //     this.bodiesGraphics[j].position.set(b.x - 405, -(b.y - 305), this.Z_DEPTH_POSITION)
+        // }
     }
 
     _initAttributes(scene, showExample) {
@@ -169,7 +175,7 @@ export class ThreeMatterClass {
     _updateExample() {
         for (let j = 0; j < this.engine.world.bodies.length; j++) {
             let b = this.engine.world.bodies[j].position;
-            this.bodiesGraphics[j].position.set(b.x - 405, -(b.y - 305), this.Z_DEPTH_POSITION)
+            this.bodiesGraphics[j]?.position.set(b.x - 405, -(b.y - 305), this.Z_DEPTH_POSITION)
         }
     }
 
