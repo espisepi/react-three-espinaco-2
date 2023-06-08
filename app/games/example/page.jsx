@@ -19,7 +19,9 @@ import { Vector3 } from 'three';
 
 const Example = dynamic(() => import('@/features/games/example/Example').then((mod) => mod.Example), { ssr: false })
 
-const MatterTerrainExample = dynamic(() => import('@/features/games/common/physics/matter-example/terrain/MatterTerrainExample').then((mod) => mod.MatterTerrainExample), { ssr: false })
+// const MatterTerrainExample = dynamic(() => import('@/features/games/common/physics/matter-example/terrain/MatterTerrainExample').then((mod) => mod.MatterTerrainExample), { ssr: false })
+
+const ThreeMatterExample = dynamic(() => import('@/features/games/common/physics/matter-example/three-matter/ThreeMatterExample').then((mod) => mod.ThreeMatterExample), { ssr: false })
 
 
 const Blob = dynamic(() => import('@/components/canvas/Examples').then((mod) => mod.Blob), { ssr: false })
@@ -55,7 +57,7 @@ export default function Page() {
   // )
   return (
     <>
-      <Script src="/scripts/pathseg.js" />
+      {/* <Script src="/scripts/pathseg.js" /> */}
 
       <View orbit={true} className='absolute top-0 flex h-screen w-full flex-col items-center justify-center'>
         <Common color='black' cameraOptions={{far:99999}} />
@@ -63,7 +65,8 @@ export default function Page() {
 
         {/* <Example /> */}
         {/* <MatterExample /> */}
-        <MatterTerrainExample />
+        {/* <MatterTerrainExample /> */}
+        <ThreeMatterExample />
       </View>
     </>
   )
