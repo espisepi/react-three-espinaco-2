@@ -34,6 +34,7 @@ export class ThreeMatterClass {
         this.scene = scene;
         this.showExample = showExample;
         this.bodiesGraphics = [];
+        // this.scene.add(this.bodiesGraphics);
         // this.bodiesPhysics = []; // No hace falta porque lo coge de this.engine.world.bodies
 
         // create a Matter.js engine
