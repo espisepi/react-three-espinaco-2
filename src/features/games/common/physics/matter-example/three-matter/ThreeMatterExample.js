@@ -4,7 +4,7 @@ import { Box } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 
 import { ThreeMatterEngine } from '../ThreeMatterEngine'
-import { ThreeMatterClass } from './ThreeMatterClass'
+import { ThreeMatterClass } from '../../matter/three-matter/ThreeMatterClass'
 
 // 1 - Poner ejemplo threejs matter codepen: https://codepen.io/cx20/pen/VYWWeY
 // 2 - Poner ejemplo terrain matter siguiendo ejemplo 1 ( threejs matter codepen ):
