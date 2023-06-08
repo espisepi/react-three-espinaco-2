@@ -3,7 +3,7 @@ import { SpriteMixer } from "../common/sprite-mixer/SpriteMixer"
 import { useFrame, useThree } from "@react-three/fiber";
 import { Box, useTexture } from "@react-three/drei";
 import { SpriteManager } from "../common/sprite-mixer/SpriteManager";
-import { MatterTerrainExample } from "../common/physics/matter-example/terrain/MatterTerrainExample";
+import { MatterTerrainExample } from "../common/physics/matter-example/terrain/ThreeMatterTerrainExample";
 export const Example = ({ ...props }) => {
     alert("D")
     return <MatterTerrainExample />

@@ -1,6 +1,7 @@
 'use client'
 
 import { MatterExample } from '@/features/games/common/physics/matter-example/MatterExample';
+import { ThreeMatterTerrainExample } from '@/features/games/common/physics/matter-example/terrain/ThreeMatterTerrainExample';
 import { Stars } from '@react-three/drei';
 import dynamic from 'next/dynamic'
 import Head from 'next/head';
@@ -66,7 +67,8 @@ export default function Page() {
         {/* <Example /> */}
         {/* <MatterExample /> */}
         {/* <MatterTerrainExample /> */}
-        <ThreeMatterExample />
+        {/* <ThreeMatterExample /> */}
+        <ThreeMatterTerrainExample />
       </View>
     </>
   )
