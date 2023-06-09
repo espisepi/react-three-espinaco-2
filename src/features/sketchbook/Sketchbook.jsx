@@ -33,6 +33,9 @@ export const SketchBook = () => {
         if(sketchbook) {
             const world = new sketchbook.World('build/assets/world.glb');
             setWorld(v=>world);
+            console.log(world)
+            // world.cameraOperator.followMode = true
+            // world.params.pointerLock = false
         }
     },[sketchbook]);
     useEffect(()=>{
@@ -41,7 +44,7 @@ export const SketchBook = () => {
         if(layoutEl) {
             layoutEl.style.display = 'none';
         }
-    },[])
+    },[]);
     return (
     null  
     )
