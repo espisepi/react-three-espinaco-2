@@ -88,7 +88,9 @@ export class ThreeMatterTerrainExampleClass extends ThreeMatterClass {
                     geometry.setAttribute( 'uv', new THREE.Float32BufferAttribute( uvs, 2 ) );
                     
                     // Define Material
-                    const material = new THREE.MeshBasicMaterial({color:'blue'});
+                    // const material = new THREE.MeshBasicMaterial({color:'blue'});
+                    const material = new THREE.PointsMaterial( { color: 0x888888, size: 30 } );
+
 
                     // Define Points
                     const particles = new THREE.Points(geometry, material);
