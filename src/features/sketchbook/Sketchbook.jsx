@@ -1,5 +1,6 @@
 import Script from "next/script"
 import { useEffect, useState } from "react"
+import { SketchbookUI } from "./SketchbookUI";
 
 
 export const SketchBook = () => {
@@ -46,7 +47,7 @@ export const SketchBook = () => {
         }
     },[]);
     return (
-    null  
+        <SketchbookUI />  
     )
 }
 
