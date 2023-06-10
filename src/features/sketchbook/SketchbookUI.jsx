@@ -3,6 +3,7 @@ import styles from './SketchbookUI.module.css';
 
 // Estilos
 const buttonLeftArrowStyle = [ styles['button'], styles['left-arrow'] ].join(' ');
+const buttonRightArrowStyle = [ styles['button'], styles['right-arrow'] ].join(' ');
 
 
 export const SketchbookUI = () => {
@@ -38,7 +39,13 @@ export const SketchbookUI = () => {
     }
     const handlePointerUpLeftArrow = (ev) => {
 		document.dispatchEvent(new KeyboardEvent('keyup', { key: 'a', code: 'KeyA' }));
-    }    
+    }
+    const handlePointerDownRightArrow = (ev) => {
+        document.dispatchEvent(new KeyboardEvent('keydown', { key: 'd', code: 'KeyD' }));
+    }
+    const handlePointerUpRightArrow = (ev) => {
+		document.dispatchEvent(new KeyboardEvent('keyup', { key: 'd', code: 'KeyD' }));
+    }       
 
 
     return (
@@ -51,6 +58,12 @@ export const SketchbookUI = () => {
                 onPointerDown={(ev)=>handlePointerDownLeftArrow(ev)}
                 onPointerUp={(ev)=>handlePointerUpLeftArrow(ev)}
                 onPointerOut={(ev)=>handlePointerUpLeftArrow(ev)}
+            ></button>
+            <button
+                className={buttonRightArrowStyle}
+                onPointerDown={(ev)=>handlePointerDownRightArrow(ev)}
+                onPointerUp={(ev)=>handlePointerUpRightArrow(ev)}
+                onPointerOut={(ev)=>handlePointerUpRightArrow(ev)}
             ></button>
         </div>
         </>
