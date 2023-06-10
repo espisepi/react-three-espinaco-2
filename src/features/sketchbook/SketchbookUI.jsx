@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import styles from './SketchbookUI.module.css';
 
 // Estilos
+const containerButtonsMovementStyle = styles['container-buttons-movement'];
 const buttonLeftArrowStyle = [ styles['button'], styles['left-arrow'] ].join(' ');
 const buttonRightArrowStyle = [ styles['button'], styles['right-arrow'] ].join(' ');
 const buttonUpArrowStyle = [ styles['button'], styles['up-arrow'] ].join(' ');
@@ -67,30 +68,32 @@ export const SketchbookUI = () => {
         <div ref={ref} id='sketchbook-ui' style={{ backgroundColor:'red', position: 'absolute',zIndex:999}}>
             <h1>OYEEEE</h1>
             {/* <button onClick={(ev)=>alert('Holi!')}>OYEE</button> */}
-            <button
-                className={buttonLeftArrowStyle}
-                onPointerDown={(ev)=>handlePointerDownLeftArrow(ev)}
-                onPointerUp={(ev)=>handlePointerUpLeftArrow(ev)}
-                onPointerOut={(ev)=>handlePointerUpLeftArrow(ev)}
-            ></button>
-            <button
-                className={buttonRightArrowStyle}
-                onPointerDown={(ev)=>handlePointerDownRightArrow(ev)}
-                onPointerUp={(ev)=>handlePointerUpRightArrow(ev)}
-                onPointerOut={(ev)=>handlePointerUpRightArrow(ev)}
-            ></button>
-            <button
-                className={buttonUpArrowStyle}
-                onPointerDown={(ev)=>handlePointerDownUpArrow(ev)}
-                onPointerUp={(ev)=>handlePointerUpUpArrow(ev)}
-                onPointerOut={(ev)=>handlePointerUpUpArrow(ev)}
-            ></button>
-            <button
-                className={buttonDownArrowStyle}
-                onPointerDown={(ev)=>handlePointerDownDownArrow(ev)}
-                onPointerUp={(ev)=>handlePointerUpDownArrow(ev)}
-                onPointerOut={(ev)=>handlePointerUpDownArrow(ev)}
-            ></button>
+            <div className={containerButtonsMovementStyle}>
+                <button
+                    className={buttonLeftArrowStyle}
+                    onPointerDown={(ev)=>handlePointerDownLeftArrow(ev)}
+                    onPointerUp={(ev)=>handlePointerUpLeftArrow(ev)}
+                    onPointerOut={(ev)=>handlePointerUpLeftArrow(ev)}
+                ></button>
+                <button
+                    className={buttonRightArrowStyle}
+                    onPointerDown={(ev)=>handlePointerDownRightArrow(ev)}
+                    onPointerUp={(ev)=>handlePointerUpRightArrow(ev)}
+                    onPointerOut={(ev)=>handlePointerUpRightArrow(ev)}
+                ></button>
+                <button
+                    className={buttonUpArrowStyle}
+                    onPointerDown={(ev)=>handlePointerDownUpArrow(ev)}
+                    onPointerUp={(ev)=>handlePointerUpUpArrow(ev)}
+                    onPointerOut={(ev)=>handlePointerUpUpArrow(ev)}
+                ></button>
+                <button
+                    className={buttonDownArrowStyle}
+                    onPointerDown={(ev)=>handlePointerDownDownArrow(ev)}
+                    onPointerUp={(ev)=>handlePointerUpDownArrow(ev)}
+                    onPointerOut={(ev)=>handlePointerUpDownArrow(ev)}
+                ></button>
+            </div>
         </div>
         </>
     )
