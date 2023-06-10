@@ -66,7 +66,6 @@ export const SketchbookUI = () => {
     return (
         <>
         <div ref={ref} id='sketchbook-ui' style={{ backgroundColor:'red', position: 'absolute',zIndex:999}}>
-            <h1>OYEEEE</h1>
             {/* <button onClick={(ev)=>alert('Holi!')}>OYEE</button> */}
             <div className={containerButtonsMovementStyle}>
                 <button
