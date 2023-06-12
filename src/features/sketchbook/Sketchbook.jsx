@@ -1,6 +1,7 @@
 import Script from "next/script"
 import { useEffect, useState } from "react"
 import { SketchbookUI } from "./SketchbookUI";
+import { SketchbookCustomScene } from "./SketchbookCustomScene";
 
 
 export const SketchBook = () => {
@@ -43,13 +44,29 @@ export const SketchBook = () => {
         // delete layout default
         const layoutEl = document.getElementById('layout');
         if(layoutEl) {
-            layoutEl.style.display = 'none';
+            // layoutEl.style.display = 'none';
+            layoutEl.style.zIndex = -999;
+            layoutEl.style.position = 'absolute';
         }
     },[]);
+
+    // SketchbookCustomScene ===========================
+    const [sketchbookCustomScene, setSketchbookCustomScene] = useState();
+    useEffect(()=>{
+        if(sketchbookCustomScene && world) {
+            world.graphicsWorld.add(sketchbookCustomScene.children[0]);
+        }
+    },[sketchbookCustomScene, world]);
+
+
     return (
-        <SketchbookUI />  
+        <>
+            <SketchbookUI />
+            <SketchbookCustomScene setScene={setSketchbookCustomScene}/>
+        </>
     )
 }
+
 
     	// <Script src="build/sketchbook.min.js">
         //     {/* {console.log(Sketchbook)} */}
