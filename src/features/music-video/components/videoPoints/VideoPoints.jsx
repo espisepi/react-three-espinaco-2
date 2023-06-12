@@ -1,4 +1,4 @@
-import { Box, useGLTF } from '@react-three/drei'
+import { Box, useGLTF, Html } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import { useMemo, useRef, useState, useEffect } from 'react'
@@ -90,18 +90,43 @@ export const VideoPoints = ({ id_video = 'video', position = [0,0,0], ...props }
            points.material.uniforms.bass.value = analyser.getUpdateLowerMax();
         }
     })
+
+    const boxRef = useRef();
+    useEffect(()=>{
+        if(boxRef && boxRef.current && points) {
+            console.log({boxRef: boxRef.current});
+            console.log(points);
+            boxRef.current.add(points);
+        }
+        return ()=>{
+            boxRef.current.remove(points);
+        }
+    },[boxRef, points]);
   return (
-    null
+    <Box ref={boxRef} name='box-wrapper-videoPoints' material-color='red' />
   )
 }
 
-const DuckModel = ({...props}) => {
-    const { scene } = useGLTF('/duck.glb')
-  useFrame((state, delta) => (scene.rotation.y += delta))
-  return (
-    <group name="video-points">
-        <primitive object={scene} {...props} />
-        <Box material-color="red" />
-    </group>
-  )
+export const VideoPointsFull = ({src = '/videos/mcpi.mp4', ...props}) => {
+    useEffect(()=>{
+        // Hacer un setInterval que finaliza hasta que encuentra el video y cuando lo encuentra se ejecuta el useEffect siguiente (crear useState para el video)
+        const id_interval = setInterval(()=>{
+            const videoEl = document.getElementById('video');
+            if(videoEl && videoEl.videoWidth !== 0 && videoEl.videoHeight !== 0 ){
+                clearInterval(id_interval);
+                // add to body html
+                document.body.appendChild(videoEl);
+            }
+        },100);
+    },[]);
+
+    return(
+        <>
+        <Html className="content" rotation-x={-Math.PI / 2} position={[0, 0, 0]} scale={[100,100,100]} transform occlude>
+                <video id="video" style={{ display: true ? 'block': 'none', width: '25vw', height: '25vh', top: 0, zIndex: 100, position: 'absolute' }}
+                src={src} controls={true} autoPlay={true} crossOrigin="anonymous"></video>
+        </Html>
+        <VideoPoints {...props} />
+        </>
+    )
 }

@@ -54,7 +54,9 @@ export const SketchBook = () => {
     const [sketchbookCustomScene, setSketchbookCustomScene] = useState();
     useEffect(()=>{
         if(sketchbookCustomScene && world) {
-            world.graphicsWorld.add(sketchbookCustomScene.children[0]);
+            sketchbookCustomScene.children.forEach(child =>{
+                world.graphicsWorld.add(child);
+            });
         }
     },[sketchbookCustomScene, world]);
 

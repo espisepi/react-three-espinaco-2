@@ -43,6 +43,7 @@ export default class Analyser {
             this.dataTexture = undefined;
         } else {
             console.error('No se ha podido crear el Analyser');
+            console.error({audio});
         }
     }
 
