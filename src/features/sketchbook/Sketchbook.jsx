@@ -63,7 +63,7 @@ export const SketchBook = () => {
 
     return (
         <>
-            <SketchbookUI />
+            <SketchbookUI world={world} />
             <SketchbookCustomScene setScene={setSketchbookCustomScene}/>
         </>
     )

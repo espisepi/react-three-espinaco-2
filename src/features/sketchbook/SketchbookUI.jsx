@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styles from './SketchbookUI.module.css';
+import { Joystick } from "react-joystick-component";
 
 // Estilos
 const containerButtonsMovementStyle = styles['container-buttons-movement'];
@@ -9,7 +10,7 @@ const buttonUpArrowStyle = [ styles['button'], styles['up-arrow'] ].join(' ');
 const buttonDownArrowStyle = [ styles['button'], styles['down-arrow'] ].join(' ');
 
 
-export const SketchbookUI = () => {
+export const SketchbookUI = ({ world }) => {
     // ====================================================
     // Se hace de esta manera porque el div que se muestra no es el de por defecto (es el uiContainerEl el que se muestra),
     // por eso lo inyectamos con appendChild
@@ -60,7 +61,19 @@ export const SketchbookUI = () => {
     }
     const handlePointerUpDownArrow = (ev) => {
 		document.dispatchEvent(new KeyboardEvent('keyup', { key: 's', code: 'KeyS' }));
-    }        
+    }
+    
+    // Touch move event
+    const handleMove = (ev) => {
+        if(world) {
+         world.cameraOperator.move(ev.x,ev.y);
+        console.log(ev);
+        }
+    }
+    const handleStop = (ev) => {
+        console.log(ev)
+    }
+
 
 
     return (
@@ -68,6 +81,7 @@ export const SketchbookUI = () => {
         <div ref={ref} id='sketchbook-ui' style={{ backgroundColor:'red', position: 'absolute',zIndex:999}}>
             {/* <button onClick={(ev)=>alert('Holi!')}>OYEE</button> */}
             <div className={containerButtonsMovementStyle}>
+                <Joystick size={100} sticky={true} baseColor="red" stickColor="blue" move={handleMove} stop={handleStop}></Joystick>
                 <button
                     className={buttonLeftArrowStyle}
                     onPointerDown={(ev)=>handlePointerDownLeftArrow(ev)}
