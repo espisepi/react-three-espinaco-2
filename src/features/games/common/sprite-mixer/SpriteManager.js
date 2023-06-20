@@ -35,8 +35,8 @@ export const SpriteManager = (textureCharacterSpriteSheet) => {
 	// - the number of columns in your animation
 	// - the number of rows in your animation
     // Crear metodo en SpriteManager para configurar esto
-	actionSprite = spriteMixer.ActionSprite( textureCharacterSpriteSheet, 10, 2 );
-	actionSprite.setFrame( 9 );
+	actionSprite = spriteMixer.ActionSprite( textureCharacterSpriteSheet, 3, 2 );
+	actionSprite.setFrame( 1 );
 
 	// Two actions are created with these arguments :
 	// - which actionSprite to use
@@ -44,7 +44,7 @@ export const SpriteManager = (textureCharacterSpriteSheet) => {
 	// - index of the end of the action
 	// - duration of ONE FRAME in the animation, in milliseconds
     // Crear metodo en SpriteManager para configurar esto
-	actions.runRight = spriteMixer.Action(actionSprite, 0, 8, 40);
+	actions.runRight = spriteMixer.Action(actionSprite, 0, 5, 500);
 	actions.runLeft = spriteMixer.Action(actionSprite, 10, 18, 40);
 
     // Crear metodo en SpriteManager para configurar esto

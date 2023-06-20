@@ -17,7 +17,7 @@ import { Vector3 } from 'three';
 
 // const VideoPoints = dynamic(() => import('@/features/music-video/components/videoPoints/VideoPoints').then((mod) => mod.VideoPoints), { ssr: false })
 
-const Example = dynamic(() => import('@/features/games/example/Example').then((mod) => mod.Example), { ssr: false })
+const SpriteExample = dynamic(() => import('@/features/games/example/Example').then((mod) => mod.SpriteExample), { ssr: false })
 
 // const MatterTerrainExample = dynamic(() => import('@/features/games/common/physics/matter-example/terrain/MatterTerrainExample').then((mod) => mod.MatterTerrainExample), { ssr: false })
 
@@ -69,7 +69,8 @@ export default function Page() {
         {/* <MatterExample /> */}
         {/* <MatterTerrainExample /> */}
         {/* <ThreeMatterExample /> */}
-        <ThreeMatterTerrainExample />
+        {/* <ThreeMatterTerrainExample /> */}
+        <SpriteExample />
       </View>
     </>
   )

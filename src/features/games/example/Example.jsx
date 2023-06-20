@@ -3,15 +3,14 @@ import { SpriteMixer } from "../common/sprite-mixer/SpriteMixer"
 import { useFrame, useThree } from "@react-three/fiber";
 import { Box, useTexture } from "@react-three/drei";
 import { SpriteManager } from "../common/sprite-mixer/SpriteManager";
-import { MatterTerrainExample } from "../common/physics/matter-example/terrain/ThreeMatterTerrainExample";
-export const Example = ({ ...props }) => {
-    alert("D")
-    return <MatterTerrainExample />
-}
+// import { MatterTerrainExample } from "../common/physics/matter-example/terrain/ThreeMatterTerrainExample";
+// export const Example = ({ ...props }) => {
+//     return <MatterTerrainExample />
+// }
 
 export const SpriteExample = ({ ...props }) => {
     const { scene } = useThree();
-    const textureCharacterSpriteSheet = useTexture('/games/sprites/character-example/character.png');
+    const textureCharacterSpriteSheet = useTexture('/games/sprites/character-example/gato-test-1.png');
     console.log(textureCharacterSpriteSheet);
     const [spriteManager, setSpriteManager] = useState(null);
     useEffect(()=>{
@@ -57,7 +56,7 @@ export const SpriteExample = ({ ...props }) => {
         if(spriteManager && spriteManager.actions){
             spriteManager.actions.runRight.playLoop();
         }
-    },[spriteManager])
+    },[spriteManager]);
 
     useFrame((state, delta)=>{
         if(spriteManager) {
